@@ -28,7 +28,7 @@
     background-color: #555;
 }
 
-a {
+a:hover {
     text-decoration: none;
 }
 

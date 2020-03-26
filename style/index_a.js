@@ -711,3 +711,25 @@ function _bindSwitchBtnHover() {
 function imageError(e) {
     e.src = _serverUrl + '/public' + e.src.split(_serverUrl).join('');
 }
+
+$(".topNavigation").find("li").hover(function () {
+	var _self = $(this);
+
+
+	_self.find(".downArrowIcon").css({
+		"transform": "rotate(-180deg)",
+		"-ms-transform": "rotate(-180deg)",
+		"-moz-transform": "rotate(-180deg)"
+	});
+	_self.find(".topHide").show();
+	_self.find('a').css('color', '#ffffff');
+}, function () {
+	var _self = $(this);
+	_self.find(".downArrowIcon").css({
+		"transform": "rotate(0deg)",
+		"-ms-transform": "rotate(0deg)",
+		"-moz-transform": "rotate(0deg)"
+	});
+	_self.find(".topHide").hide();
+	_self.find('a').css('color', '#cdcdcd');
+})

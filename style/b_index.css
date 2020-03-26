@@ -494,6 +494,10 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
     font-weight:400;
     color:rgba(51,51,51,1);
     margin-right: 3px;
+    width: 145px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 .b_content .b_left .b_rating_list .b_rating_item .b_rating_top .b_rt_box .b_rt_name img {
     width: 12px;

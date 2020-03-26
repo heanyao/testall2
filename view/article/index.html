@@ -11,7 +11,10 @@
     <link rel="stylesheet" href="__INDEX__/style/home.css">
     <script>
     {if condition="$user_head neq ''"}
-    var photo_url = "{$user_head.head_img_url}";
+	{php}
+	$photo_url = str_replace("\\", "/", $user_head['head_img_url']);
+	{/php}
+    var photo_url = "{$photo_url}";
     {else /}
     var photo_url = "/uploads/20190826/51aec157750ba42ac103de0da051d67e.jpg";
     {/if}

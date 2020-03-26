@@ -42,6 +42,10 @@ function post_action(self, url, data) {
         success: function (data) {
             if (data.code === 200) {
                 console.log(data);
+				layer.msg('登陆成功')
+				setTimeout(function(){
+					window.location.href="/";
+				}, 800);
                 // window.location.assign('c_index.html');
             } else {
                 self.errormsg = data.msg;

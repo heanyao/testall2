@@ -72,7 +72,7 @@
                     <div class="images_shade">
                         <div class="images_shade_new"><span>new</span></div>
                         <div class="images_shade_right">
-                            <a href="javascript:void(0)" class="shoucang"><img src="__INDEX__/images/collection_a.png">
+                            <a href="javascript:void(0)" class="shoucang" data-save-type="2" onclick="exp_save(this,{$homes.id})"><img src="__INDEX__/images/collection_a.png">
                                 <div>收藏</div>
                             </a>
                         </div>
@@ -567,6 +567,39 @@
   //     }
   //   }
 
+	function exp_save(e,id){
+		var type = $(e).attr('data-save-type');
+		if(type==0){
+			Dialog.warn("提示",'未登录');
+		}
+		else{
+			$.ajax({
+				url:'/prolist_add_keep/'+id+'/'+type,
+				type:'get',
+				dataType:'json',
+				success:function(data){
+					if(data.code=='add200'){
+						 $(e).attr('data-save-type',2);
+						 $(e).attr('src','./images/save-ed.png');
+						 $(e).siblings('span').text('已收藏');
+						
+					}else if(data.code=='delete200'){
+						 $(e).attr('data-save-type',1);
+						 $(e).attr('src','./images/save.png');
+						 $(e).siblings('span').text('未收藏');
+						
+					}else{
+						Dialog.warn("提示",data.msg);
+						 $('.mini-dialog-footer').css('height', '64px');
+					}
+				},
+				error:function(){
+					  console.log('请求错误');
+				}
+				
+			});
+		}				
+	}
 
     function shousuo(){
       var province = $("input[name='fangyu']:checked").val();

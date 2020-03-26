@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="__INDEX__/style/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="__INDEX__/style/iview.css">
     <link rel="stylesheet" type="text/css" href="__INDEX__/style/b_index.css">
+	<link rel="stylesheet" href="//unpkg.com/view-design/dist/styles/iview.css">
     <style>
         [v-clock]{
 		    display:none;
@@ -484,18 +485,18 @@ $(function() {
                     success: function(res) {
                         console.log(res);
                         if(res.code == "add200"){
-                  Dialog.warn("提示", res.msg);
-                $('.mini-dialog-footer').css('height','64px');
-                            
-                            this.ghtml ='关注';
+                            that.ghtml ='已关注';
+							Dialog.warn("提示", res.msg);
+							$('.mini-dialog-footer').css('height','64px');
                         }else if(res.code == 4000)
                         {
-                  Dialog.warn("提示", res.msg);
-                 $('.mini-dialog-footer').css('height','64px');
+                            that.ghtml ='已关注';
+							Dialog.warn("提示", res.msg);
+							$('.mini-dialog-footer').css('height','64px');
                         }
                         else{
-                  Dialog.warn("提示", res.msg);
-                 $('.mini-dialog-footer').css('height','64px');
+							Dialog.warn("提示", res.msg);
+							$('.mini-dialog-footer').css('height','64px');
                         }
                     }
                 })

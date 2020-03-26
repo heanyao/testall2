@@ -322,7 +322,7 @@
     box-sizing: border-box;
 }
 .flex{
-    display: flex;
+    display: inline-flex;
     justify-content: space-between;
     align-items: center;
 }
@@ -383,9 +383,12 @@
     font-weight: 400;
     color: rgba(153, 153, 153, 1);
     line-height: 17px;
-    margin-left: 100px;
+    margin-left: 70px;
     float: left;
     margin-top: 10px;
+    white-space: pre;
+    /* right: 30px; */
+    /* position: relative; */
 }
 
 .f-stop2 {
