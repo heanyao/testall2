@@ -152,7 +152,8 @@
                     <img src="__INDEX__/images/onesale_a.png" style="margin-left: 20px">
                     <div class="content_header_right">
                         <div class="content_header_rightphoto">
-                            <img src="__INDEX__/images/save_a.png"><img src="__INDEX__/images/share.png"><span>举报</span>
+                            <img id="exp_save_{$property_info.id}" data-save-type="0" style="cursor: pointer;" src="__INDEX__/images/save_a.png" onclick="exp_save(this, {$property_info.id})">
+								<img src="__INDEX__/images/share.png"><span>举报</span>
                         </div>
                         <div class="content_header_text">
                             <div class="content_header_text_x">
@@ -841,6 +842,7 @@
 <script>window.jQuery || document.write('__INDEX__/exts/ys/js/jquery-1.8.3.min.js"><\/script>')</script>
 <script type="text/javascript" src="__INDEX__/style/housingDetails.js"></script>
 <script type="text/javascript" src="__INDEX__/exts/ys/js/no.js"></script>
+<script src="/static/index/style/MiniDialog-es5.min.js"></script>
 <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=OLV2W7QHEE9btblyddTkBQBWhjXw030h"></script>
 <script>
     var mySwiper = new Swiper ('.swiper-container', {
@@ -1005,5 +1007,59 @@
             onSearchComplete: myFun
         }); local.search(myValue);
     }
+	
+	//收藏
+	function exp_save(e, id){
+		var type = $(e).attr('data-save-type');
+		if(type==0){
+			Dialog.warn("提示",'未登录');
+		}
+		else{
+			$.ajax({
+				url:'/prolist_add_keep/'+id+'/'+type,
+				type:'get',
+				dataType:'json',
+				success:function(data){
+					if(data.code=='add200'){
+						 $(e).attr('data-save-type',2);
+						 $(e).attr('src','/static/index/images/save_yellow_a.png');
+						
+					}else if(data.code=='delete200'){
+						 $(e).attr('data-save-type',1);
+						 $(e).attr('src','/static/index/images/save_a.png');
+					}else{
+						Dialog.warn("提示",data.msg);
+						$('.mini-dialog-footer').css('height', '64px');
+					}
+				},
+				error:function(){
+					  console.log('请求错误');
+				}
+				
+			});
+		}		
+	}
+	
+	function set_save_type(id){
+		$.ajax({
+			url:'/prolist_add_keep/'+id+'/0',
+			type:'get',
+			dataType:'json',
+			success:function(data){
+				if(data.code ===200){
+					$("#exp_save_"+id+"").attr('data-save-type',2);
+					$("#exp_save_"+id+"").attr('src','/static/index/images/save_yellow_a.png');
+				}
+				else{
+					$("#exp_save_"+id+"").attr('data-save-type',1);
+					$("#exp_save_"+id+"").attr('src','/static/index/images/save_a.png');
+				}
+			},
+			error:function(){
+				 return 0;
+			}
+		});
+	}
+	set_save_type({$property_info.id})
 </script>
 </html>

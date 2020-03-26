@@ -165,7 +165,7 @@ $("#comments").on("click", ".reply_btn", function () {
                     <img src= "`+photo_url+`" alt="">
                 </div>
                 <div class="f-reply-emoji">
-                    <img src="./images/emoji.png" alt="" class="emojiIcon emojiIcon1">
+                    <img src="/static/index/images/emoji.png" alt="" class="emojiIcon emojiIcon1">
                     <div class="emojiContent emojiContent1">
                         <ul class="emojiList emojiList1"></ul>
                     </div>

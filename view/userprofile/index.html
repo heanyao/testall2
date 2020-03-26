@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="__INDEX__/style/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="__INDEX__/style/iview.css">
     <link rel="stylesheet" type="text/css" href="__INDEX__/style/b_index.css">
-	<link rel="stylesheet" href="//unpkg.com/view-design/dist/styles/iview.css">
     <style>
         [v-clock]{
 		    display:none;
@@ -137,7 +136,7 @@
                     <div class="b_left_right_btn">
                         <!-- <img src="__INDEX__/images/light@2x.png" alt="left">
                         <img src="__INDEX__/images/right@2x.png" alt="right"> -->
-                        <Page :page-size="newListNum" @on-change="changepage4" :total="newListTotal" simple />
+                        <Page :page-size="newListNum" @on-change="changepage4" :total="newListTotal" prev-text="<" next-text=">" />
                     </div>
                 </div>
             </div>

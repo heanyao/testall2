@@ -50,7 +50,7 @@
 
     <div class="containe">
 {volist name="companyhomes" id="homes" key="k"}
-        <div class="containe_content_box">
+        <div class="containe_content_box" data-home-id="{$homes.id}">
             <!-- 图片-->
             <div class="qiehuan">
                 <div class="lxfscroll">
@@ -72,7 +72,8 @@
                     <div class="images_shade">
                         <div class="images_shade_new"><span>new</span></div>
                         <div class="images_shade_right">
-                            <a href="javascript:void(0)" class="shoucang" data-save-type="2" onclick="exp_save(this,{$homes.id})"><img src="__INDEX__/images/collection_a.png">
+                            <a id="exp_save_{$homes.id}" href="javascript:void(0)" class="shoucang" data-save-type="0" onclick="exp_save(this,{$homes.id})">
+									<img src="__INDEX__/images/collection_a.png">
                                 <div>收藏</div>
                             </a>
                         </div>
@@ -455,6 +456,7 @@
 <div class="wrapBackground"></div>
 </body>
 <script src="__INDEX__/style/lanHu.js" type="text/javascript"></script>
+<script src="__INDEX__/style/MiniDialog-es5.min.js"></script>
 <script>
     // 轮播
     var mySwiper = new Swiper ('.swiper-container', {
@@ -580,17 +582,16 @@
 				success:function(data){
 					if(data.code=='add200'){
 						 $(e).attr('data-save-type',2);
-						 $(e).attr('src','./images/save-ed.png');
-						 $(e).siblings('span').text('已收藏');
+						 $(e).find('img').attr('src','/static/index/images/save_yellow_a.png');
+						 $(e).find('div').text('已收藏').css({"color":"rgb(247, 181, 0)"});
 						
 					}else if(data.code=='delete200'){
 						 $(e).attr('data-save-type',1);
-						 $(e).attr('src','./images/save.png');
-						 $(e).siblings('span').text('未收藏');
-						
+						 $(e).find('img').attr('src','/static/index/images/save_a.png');
+						 $(e).find('div').text('未收藏').css({"color":"white"});						
 					}else{
 						Dialog.warn("提示",data.msg);
-						 $('.mini-dialog-footer').css('height', '64px');
+						$('.mini-dialog-footer').css('height', '64px');
 					}
 				},
 				error:function(){
@@ -599,6 +600,29 @@
 				
 			});
 		}				
+	}
+	
+	function set_save_type(id){
+		$.ajax({
+			url:'/prolist_add_keep/'+id+'/0',
+			type:'get',
+			dataType:'json',
+			success:function(data){
+				if(data.code ==200){
+					$("#exp_save_"+id+"").attr('data-save-type',2);
+					$("#exp_save_"+id+"").find('img').attr('src','/static/index/images/save_yellow_a.png');
+					$("#exp_save_"+id+"").find('div').text('已收藏').css({"color":"rgb(247, 181, 0)"});
+				}
+				else{
+					$("#exp_save_"+id+"").attr('data-save-type',1);
+					$("#exp_save_"+id+"").find('img').attr('src','/static/index/images/save_a.png');
+					$("#exp_save_"+id+"").find('div').text('未收藏').css({"color":"white"});
+				}
+			},
+			error:function(){
+				 return 0;
+			}
+		});
 	}
 
     function shousuo(){
@@ -611,6 +635,10 @@
       }
     }
 
+	for(var i=0; i<$('.containe_content_box').size(); i++){
+		id = $('.containe_content_box').eq(i).attr('data-home-id');
+		set_save_type(id);
+	}
 
 </script>
 <style>

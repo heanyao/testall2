@@ -5,13 +5,13 @@ $(function () {
     $(".weitu").hide();
 
 })
-$(".shoucang").toggle(function () {
-    $(this).children().next().css("color", "rgba(247, 181, 0, 1)")
-    $(this).children().attr("src", __INDEXURL__+"/images/save_yellow_a.png")
-}, function () {
-    $(this).children().next().css("color", "rgba(255, 255, 255, 1)")
-    $(this).children().attr("src", __INDEXURL__+"/images/save_a.png")
-});
+// $(".shoucang").toggle(function () {
+    // $(this).children().next().css("color", "rgba(247, 181, 0, 1)")
+    // $(this).children().attr("src", __INDEXURL__+"/images/save_yellow_a.png")
+// }, function () {
+    // $(this).children().next().css("color", "rgba(255, 255, 255, 1)")
+    // $(this).children().attr("src", __INDEXURL__+"/images/save_a.png")
+// });
 
 // images/椭圆形.png
 //images/分组%2011.png
